@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select id="languageSelect" onchange="changeLanguage()">
+            <option value="javascript">JavaScript</option>
+            <option value="typescript">TypeScript</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="ruby">Ruby</option>
+            <!-- Add more languages as needed -->
+          </select>
+          <input type="text" class="search-bar" placeholder="Search..." />
+          <input type="text" class="search-bar" placeholder="Replace..." />
+          <button onclick="findAndReplace()">
+            <i class="fas fa-search icon"></i>Find & Replace
+          </button>
+        </div>
+        <div class="toolbar-right">
+          <select id="themeSelect" onchange="changeTheme()">
+            <option value="vs-dark">Dark</option>
+            <option value="vs-light">Light</option>
+            <option value="hc-black">High Contrast</option>
+          </select>
+          <button onclick="formatCode()">
+            <i class="fas fa-indent icon"></i>Format Code
+          </button>
+          <button onclick="runCode()">
+            <i class="fas fa-play icon"></i> Run Code
+          </button>
+        </div>
+      </div>
+      <div class="editor-container">
+        <div class="sidebar">
+          <h3>File Explorer</h3>
+          <ul id="fileExplorer">
+            <ul>
+              <li class="file">
+                <i class="fas fa-folder icon"></i> src
+                <div class="file-options">
+                  <button onclick="addFile()">
+                    <i class="fas fa-file-alt icon"></i>
+                  </button>
+                  <button onclick="addFolder()">
+                    <i class="fas fa-folder icon"></i>
+                  </button>
+                  <button onclick="deleteItem()">
+                    <i class="fas fa-trash icon"></i>
+                  </button>
+                  <button onclick="renameItem()">
+                    <i class="fas fa-edit icon"></i>
+                  </button>
+                </div>
+                <ul>
+                  <li class="file">
+                    <i class="fas fa-file-code icon"></i> index.js
+                  </li>
+                  <li class="file">
+                    <i class="fas fa-file-code icon"></i> styles.css
+                  </li>
+                </ul>
+                <ul>
+                  <li class="file">
+                    <i class="fas fa-file-code icon"></i> index.html
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+        </div>
+        <div class="separator"></div>
+        <!-- Thin line separator -->
+        <div class="editor" id="editor"></div>
+      </div>
+      <div class="toolbar">
+        <div></div>
+        <div>
+          Line: <span id="lineNumber">1</span>, Column:
+          <span id="columnNumber">1</span>
+        </div>
+        <div>
+          Language: <span id="language">JavaScript</span> Theme:
+          <span id="theme">Dark</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="terminal-container">
+      <button id="terminal-toggle">&times;</button>
+      <div id="terminal"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
